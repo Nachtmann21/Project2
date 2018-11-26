@@ -18,6 +18,7 @@ struct node *temp = NULL;
 #define MAXCHAR 201
 
 DEALERSHIP *functionN(int *repeat);
+void *functionV(int *repeat);
 
 int main() {
     char c;
@@ -29,7 +30,7 @@ int main() {
             dealership = functionN(&repeat);
         }
         if(c == 'v'){
-            functionV();
+            functionV(&repeat);
         }
     }
 
@@ -79,8 +80,8 @@ DEALERSHIP *functionN(int *repeat){
 
             fgets(word, MAXCHAR, fptr);
             word[strlen(word) - 1] = '\0';
-            p_s->category = word;
-            printf("%s\n", p_s->category);
+            p_s->carDealer = word;
+            printf("%s\n", p_s->carDealer);
 
             fscanf(fptr, "%d", &number);
             p_s->year = number;
@@ -106,4 +107,8 @@ DEALERSHIP *functionN(int *repeat){
         *repeat = count;
         return first;
     }
+}
+
+void *functionV(int *repeat){
+
 }
