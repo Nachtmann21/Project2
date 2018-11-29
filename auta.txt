@@ -12,3 +12,10 @@ AUTO Modranska 5 Senec
 18000
 2011
 po havarii opraveny v dobrom stave
+$
+testovy zaznam
+Skodovecka
+Autobazar lunik
+8888
+9999
+udrziavane pekne
