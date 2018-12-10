@@ -19,3 +19,17 @@ Cambelova autobazar Stara Vajnorska 3296/25A Bratislava
 11500
 2012
 roztrhnuta plachta
+$
+osobny automobil
+Ferrari
+Autobazar Pestovatelska 4 Bratislava
+100
+1992
+velmi stare
+$
+osobny automobil
+Ferrari
+Autobazar Pestovatelska 4 Bratislava
+100000
+2018
+velmi drahe

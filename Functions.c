@@ -6,15 +6,20 @@
 #include <mem.h>
 #include "Functions.h"
 
-#define MAXCHAR 200
+#define MAXNAME 200
+#define MAXCONDITION 100
+#define MAXCHAR 50
 
+//reads all data from text file, saves it into a linked list
 DEALERSHIP *functionN(int *repeat){
     char *word = malloc(sizeof(char) * MAXCHAR);
     int count = 0;
 
+    //reads from this file, be careful, the path may vary depending on your IDE
     FILE *fptr;
     fptr = fopen("..\\auta.txt", "r");
 
+    //if no data was found in file
     if(fptr == NULL) {
         printf("Zaznamy neboli nacitane");
         return NULL;
@@ -54,22 +59,23 @@ DEALERSHIP *functionN(int *repeat){
                 brand[strlen(brand) - 1] = '\0';
                 p_s->brand = brand;
 
-                fgets(carDealer, MAXCHAR, fptr);
+                fgets(carDealer, MAXNAME, fptr);
                 carDealer[strlen(carDealer) - 1] = '\0';
                 p_s->carDealer =  carDealer;
-
-                fscanf(fptr, "%d", &number);
-                p_s->year = number;
-                fgetc(fptr);
 
                 fscanf(fptr, "%d", &number);
                 p_s->price = number;
                 fgetc(fptr);
 
-                fgets(condition, MAXCHAR, fptr);
+                fscanf(fptr, "%d", &number);
+                p_s->year = number;
+                fgetc(fptr);
+
+                fgets(condition, MAXCONDITION, fptr);
                 condition[strlen(condition) - 1] = '\0';
                 p_s->condition = condition;
 
+                //creates linked list
                 if(i == 0){
                     first = p_s;
                     first->next = temp;
@@ -81,6 +87,7 @@ DEALERSHIP *functionN(int *repeat){
                 temp->next = NULL;
 
             } else {
+                //if there is only one data part in text file
                 char *category = malloc(sizeof(char) * MAXCHAR);
                 char *brand = malloc(sizeof(char) * MAXCHAR);
                 char *carDealer = malloc(sizeof(char) * MAXCHAR);
@@ -99,22 +106,23 @@ DEALERSHIP *functionN(int *repeat){
                 brand[strlen(brand) - 1] = '\0';
                 p_s->brand = brand;
 
-                fgets(carDealer, MAXCHAR, fptr);
+                fgets(carDealer, MAXNAME, fptr);
                 carDealer[strlen(carDealer) - 1] = '\0';
                 p_s->carDealer = carDealer;
-
-                fscanf(fptr, "%d", &number);
-                p_s->year = number;
-                fgetc(fptr);
 
                 fscanf(fptr, "%d", &number);
                 p_s->price = number;
                 fgetc(fptr);
 
-                fgets(condition, MAXCHAR, fptr);
+                fscanf(fptr, "%d", &number);
+                p_s->year = number;
+                fgetc(fptr);
+
+                fgets(condition, MAXCONDITION, fptr);
                 condition[strlen(condition) - 1] = '\0';
                 p_s->condition = condition;
 
+                //no need to create temp struct
                 first = p_s;
                 first->next = NULL;
             }
@@ -126,11 +134,13 @@ DEALERSHIP *functionN(int *repeat){
     }
 }
 
+//prints the loaded data in linked list
 void functionV(DEALERSHIP *first){
     DEALERSHIP *p_s = NULL;
     int count = 1;
     p_s = first;
 
+    //runs until ->next is null
     while (p_s != NULL) {
         printf("%d.\n", count++);
         printf("kategoria: %s\n", p_s->category);
@@ -142,4 +152,41 @@ void functionV(DEALERSHIP *first){
         p_s = p_s->next;
     }
 }
+
+//filter cars with same brand and lower price
+void functionH(DEALERSHIP *first){
+    DEALERSHIP *p_s = NULL;
+    char *carBrand = malloc(sizeof(char) * MAXCHAR);
+    char *brandCompare;
+    int count = 1;
+    int carPrice = 0;
+    p_s = first;
+
+    //wait for user input
+    scanf("%s", carBrand);
+    scanf("%d", &carPrice);
+    strlwr(carBrand);
+
+    //runs until ->next is null
+    while (p_s != NULL) {
+        brandCompare = strlwr(p_s->brand);
+        if(p_s->price <= carPrice && strcmp(brandCompare, carBrand) == 0){
+            printf("%d.\n", count++);
+            printf("kategoria: %s\n", p_s->category);
+            printf("znacka: %s\n", p_s->brand);
+            printf("predajca: %s \n", p_s->carDealer);
+            printf("cena: %d\n", p_s->price);
+            printf("rok_vyroby: %d\n", p_s->year);
+            printf("stav_vozidla: %s\n", p_s->condition);
+        }
+        p_s = p_s->next;
+    }
+
+    //if no cars met conditions, print message
+    if(count == 1){
+        printf("V ponuke niesu pozadovane auta\n");
+
+    }
+}
+
 #pragma clang diagnostic pop
