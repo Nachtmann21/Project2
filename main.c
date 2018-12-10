@@ -7,19 +7,20 @@
 int main() {
     char c;
     int repeat = 0;
-    DEALERSHIP *dealership = NULL;
+    DEALERSHIP *first = NULL;
 
     while((c = (char) getchar()) != 'k'){
         if(c == 'n'){
-            dealership = functionN(&repeat);
+            first = functionN(&repeat);
         }
         if(c == 'v'){
-            functionV(&repeat);
+            functionV(first);
         }
     }
-
-    printf("end of while 2\n");
-    free(dealership);
+    //if no dealership data exists, no need to free
+    if(first != NULL){
+        free(first);
+    }
 
     return 0;
 }

@@ -9,13 +9,13 @@ $
 kamion
 Renault
 AUTO Modranska 5 Senec
-18000
-2011
+28000
+2016
 po havarii opraveny v dobrom stave
 $
-testovy zaznam
-Skodovecka
-Autobazar lunik
-8888
-9999
-udrziavane pekne
+prives
+Renault magnum
+Cambelova autobazar Stara Vajnorska 3296/25A Bratislava
+11500
+2012
+roztrhnuta plachta

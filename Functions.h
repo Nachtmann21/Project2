@@ -12,8 +12,7 @@ typedef struct DEALERSHIP{
 }DEALERSHIP;
 
 DEALERSHIP *functionN(int *repeat);
-void functionV(int *repeat);
+void functionV(DEALERSHIP *dealership);
+
 
 #endif //PROJEKT2_FUNCTIONS_H
-
-
